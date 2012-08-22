@@ -1,0 +1,21 @@
+<% title "Sitecontacts" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Message</th>
+  </tr>
+  <% for sitecontact in @sitecontacts %>
+    <tr>
+      <td><%= sitecontact.name %></td>
+      <td><%= sitecontact.email %></td>
+      <td><%= sitecontact.message %></td>
+      <td><%= link_to "Show", sitecontact %></td>
+      <td><%= link_to "Edit", edit_sitecontact_path(sitecontact) %></td>
+      <td><%= link_to "Destroy", sitecontact, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Sitecontact", new_sitecontact_path %></p>

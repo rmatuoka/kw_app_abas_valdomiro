@@ -1,11 +1,12 @@
 KwAppAbasValdomiro::Application.routes.draw do
-
+  resources :sitecontacts
   resources :user_sessions
   resources :users
   resources :password_resets
   resources :atualizar
   #Inicio do namespace Admin
   namespace(:admin){
+    resources :sitecontacts
     resources :static_contents
     resources :users do
       collection do
@@ -17,7 +18,8 @@ KwAppAbasValdomiro::Application.routes.draw do
   }
   #Final do namespace Admin
   
-  root :to => "user_sessions#new"
+  resources :twitter
+  root :to => "twitter#index"
   match 'cadastro' => "users#new"
   match 'login' => 'user_sessions#new'  
   match 'logout' => 'user_sessions#destroy'  

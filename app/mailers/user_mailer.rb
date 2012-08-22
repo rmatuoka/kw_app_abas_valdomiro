@@ -6,4 +6,9 @@ class UserMailer < ActionMailer::Base
 		mail(:to => user.email, :subject => "Instruções para trocar a senha")
 	end
 	
+	def send_contact(sitecontact)
+    @sitecontact = sitecontact
+		mail(:to => "equipevaldomiro@gmail.com", :reply_to => sitecontact.email, :subject => "Nova mensagem através do FB - Contact Form")
+	end
+	
 end

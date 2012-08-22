@@ -1,0 +1,40 @@
+<div id='header'>
+	<img src="images/logo.png" width="324" height="62" alt="Valdomiro Lopes no Twitter" title="Logo" />
+</div>
+<div id='article'>
+	<div id='bt-follow'>
+    	<h1><img src="images/seta.png" width="10" height="18" alt="Valdomiro Lopes no Twitter" title="Seta" class="seta" />Fique por dentro de tudo que acontece em nossa campanha!</h1>
+		<a href="https://twitter.com/Valdormiro" class="twitter-follow-button" data-show-count="false" data-lang="pt" data-size="large"><img src="images/bt-follow.png" width="145" height="28" alt="Siga @ValdomiroLopes" title="Follow Button" /></a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	</div>
+	<div id='twing'>
+		<script>
+        new TWTR.Widget({
+          version: 2,
+          type: 'search',
+          search: 'ValdomiroLopes',
+          rpp: 10,
+          title: 'Exibindo @ValdomiroLopes',
+          interval: 30000,
+          width: 610,
+          height: 300,
+          theme: {
+            shell: {
+              background: '#FFFFFF',
+              color: 'red'
+            },
+            tweets: {
+              background: '#ffffff',
+              color: '#000000',
+              links: 'red'
+            }
+          },
+          features: {
+            scrollbar: false,
+            loop: false,
+            live: false,
+            behavior: 'default'
+          }
+        }).render().start();
+        </script>
+	</div>
+</div>

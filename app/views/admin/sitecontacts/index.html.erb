@@ -1,0 +1,23 @@
+<% title "Contatos Enviados" %>
+<h1>Contatos Enviados</h1>
+<table id="table"  width="100%">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Message</th>
+  </tr>
+  </thead>  
+  <tbody>
+<% for sitecontact in @sitecontacts %>
+    <tr>
+      <td><%= sitecontact.name %></td>
+      <td><%= sitecontact.email %></td>
+      <td><%= sitecontact.message %></td>
+      <td><%= link_to "Show", [:admin, sitecontact] %></td>
+      <td><%= link_to "Edit", edit_admin_sitecontact_path(sitecontact) %></td>
+      <td><%= link_to "Destroy", [:admin, sitecontact], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

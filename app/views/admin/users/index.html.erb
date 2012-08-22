@@ -10,12 +10,15 @@
 <br><br>
 </div>
 
-<table>
-  <tr>
+<table id="table" width="100%">
+  <thead>
+   <tr>
     <th width="200px">Nome</th>
     <th width="200px">Sobrenome</th>
 	<th width="200px">Email</th>
   </tr>
+  </thead>
+  <tbody>
   <% for user in @users %>
     <tr>
       <td><%= user.name %></td>
@@ -26,6 +29,7 @@
       <td><%= link_to "Destroy", admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 <%= will_paginate @users %>
 

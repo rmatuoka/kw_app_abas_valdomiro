@@ -1,0 +1,21 @@
+
+<% title "Sitecontact" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sitecontact.name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @sitecontact.email %>
+</p>
+<p>
+  <strong>Message:</strong>
+  <%= @sitecontact.message %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_sitecontact_path(@sitecontact) %> |
+  <%= link_to "Destroy", @sitecontact, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", sitecontacts_path %>
+</p>

@@ -1,0 +1,12 @@
+<%= form_for @sitecontact do |f| %>
+<%= f.error_messages %>
+	<label>Nome e Sobrenome*</label><br />
+    <%= f.text_field :name, :class => "input" %><br /><br />
+    <label>E-mail*</label><br />
+    <%= f.text_field :email, :class => "input" %><br /><br />
+    <label>Mensagem*</label><br />
+    <%= f.text_area :message, :class => "textarea" %><br /><br />
+    <%=image_submit_tag "bt-send.png", :class => "bt-send"%>
+<% end %>
+
+

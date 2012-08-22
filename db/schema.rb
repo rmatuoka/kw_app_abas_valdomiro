@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004192741) do
+ActiveRecord::Schema.define(:version => 20120822153806) do
 
   create_table "roles", :force => true do |t|
     t.string   "name",              :limit => 40
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(:version => 20111004192741) do
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sitecontacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
