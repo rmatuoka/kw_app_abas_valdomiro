@@ -24,6 +24,7 @@
       default: "%A, %d de %B de %Y, %H:%M h"
       short: "%d/%m, %H:%M h"
       long: "%A, %d de %B de %Y, %H:%M h"
+      pdate: "%d/%m/%Y"
     am: ''
     pm: ''
 
@@ -149,18 +150,18 @@
       prompt: "Por favor selecione"
 
     submit:
-      create: 'Criar %{model}'
-      update: 'Atualizar %{model}'
-      submit: 'Salvar %{model}'
+      create: 'Salvar'
+      update: 'Alterar'
+      submit: 'Salvar'
 
   errors:
-    format: "%{attribute} %{message}"
-
-    template:
+    template: &errors_template
       header:
-        one: "Não foi possível gravar %{model}: 1 erro"
-        other: "Não foi possível gravar %{model}: %{count} erros."
-      body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+        one: "Não foi possível gravar! Existe um erro."
+        other: "Não foi possível gravar! Existe alguns erros."
+      body: 
+        one: "Por favor, verifique o seguinte campo:"
+        other: "Por favor, verifique os seguintes campos:"
 
     messages: &errors_messages
       inclusion: "não está incluído na lista"
@@ -182,14 +183,238 @@
       less_than_or_equal_to: "deve ser menor ou igual a %{count}"
       odd: "deve ser ímpar"
       even: "deve ser par"
+      check_over_18: "deve ter mais de 18 anos"
+      
+# Campos que são comuns para todas as tabelas e atributos de form  
+  attributes: &active_model_default
+    created_at: "Data de criação"
+    updated_at: "Data de atualização" 
+    name: "Nome"
+    published: "Publicado"
+    price: "Preço"  
+    discount: "Desconto"
+    menu_display: "Mostrar no Menu"
+    actions: "Ações"  
+    showing: "Visualizar"
+    editing: "Editar"
+    exclude: "Excluir"
+    create_new: "+ Criar novo"
+    go_back: "Voltar"
+    add_new: "[Adicionar Novo]"
+    add_newf: "[Adicionar Nova]"    
+    new: "Novo"
+    newf: "Nova"
+    edit: "Editar"
+    titleadmin: "Administrador Korewa "    
+    greeting: "Bem Vindo"
+    manage: "Gerenciar " 
+    policy: "Politica de privacidade"
+    terms_of_use: "Termos de Uso"
+    help: "Ajuda"
+    support: "Suporte"
+    menuadmin:
+        structure: "Estrutura"
+        content: "Menu"
+        manage: "Administrador do Site"
+        tickets: "Bilhetes"
+        orders: "Compras"
+        banners: "Propagandas"
+        newsletters: "Informativo"
+#Fim dos campos comuns
 
   activerecord:
+    models:
+        category: 
+            one: "Categoria"
+            other: "Categorias" 
+        content:
+            one: "Conteúdo"  
+            other: "Conteúdos" 
+        configuration:
+            one: "Configuração"
+            other: "Configurações"
+        footer_site:
+            one: "Rodapé Site"
+            other: "Rodapés Sites"
+        gallery:
+            one: "Galeria"  
+            other: "Galerias"
+        gallery_image:
+            one: "Galeria de Imagens"  
+            other: "Galerias de Imagens"   
+        movie: 
+            one: "Video" 
+            other: "Videos"
+        complement_menu:
+            one: "Menu Complementar"
+            other: "Menus Complementares"                
+        subcategory: 
+            one: "Subcategoria"
+            other: "Subcategorias"         
+        template: 
+            one: "Template" 
+            other: "Templates"
+        ticket:
+            one: "Bilhete" 
+            other: "Bilhetes"  
+        ticket_category:
+            one: "Categoria do Bilhete" 
+            other: "Categorias dos Bilhetes"    
+        ticket_home:
+            one: "Home do Bilhete" 
+            other: "Home dos Bilhetes"
+        ticket_type:
+            one: "Tipo de Bilhete" 
+            other: "Tipos de Bilhetes"                                                    
+        user: 
+            one: "Usuário"
+            other: "Usuários"            
+        webmodule: 
+            one: "Módulo"
+            other: "Módulos"
+
+        webpart: 
+            one: "WebPart"
+            other: "WebParts"
+    attributes:
+        #Campos especificos de acordo com cada tabela
+        sitecontact:
+            message: "Mensagem"
+            name: "Nome e Sobrenome"
+            
+        content:
+            content: "Conteúdo"
+            summary: "Resumo"
+            icon_menu: "Icone do Menu"
+            messages:
+                index: "Verifique abaixo a lista dos conteúdos cadastrados no sistema."  
+                new: "Utilize os campos abaixo para cadastrar um novo conteúdo." 
+                show: "Verifique se as informações abaixo estão corretas." 
+        configuration:   
+            email_adm: "Email Administração"
+            email_compras: "Email Compras"
+            email_contato: "Email Contato"
+            email_imprensa: "Email Imprensa"
+            copyright: "Autor"
+            address: "Endereço"
+            phone: "Telefone"
+            schedule: "Horário"
+            twitter: "Endereço Twitter"
+            facebook: "Endereço Facebook"
+            youtube: "Endereço Youtube"
+            <<: *active_model_default           
+            messages:
+                index: "Verifique abaixo as configurações cadastrados no sistema."  
+                new: "Utilize os campos abaixo para cadastrar uma nova configuração." 
+                show: "Verifique se as informações abaixo estão corretas."
+        complement_menu:
+            destination: "Destino"
+            messages:
+                index: "Verifique abaixo a lista dos complementos cadastrados no sistema."  
+                new: "Utilize os campos abaixo para cadastrar um novo complemento." 
+                show: "Verifique se as informações abaixo estão corretas."                        
+        subcategory:
+            messages:
+                index: "Verifique abaixo a lista das sub-categorías cadastrados no sistema."  
+                new: "Utilize os campos abaixo para cadastrar uma nova sub-categoría." 
+                show: "Verifique se as informações abaixo estão corretas."  
+        footer_site:
+            legend: "Legenda"
+            destination: "Destino"
+            link_target: "Abrir como"
+            image: "Imagem"
+            footer_type: "Tipo"
+            types:
+                selection: "Selecione um tipo"
+                one: "Realização"
+                two: "Apoio"
+                three: "Patrocinadores"
+                four: "Colaboradores"
+                                                  
+        template:
+            template_type: "Tipo de Template"
+            messages:
+                index: "Verifique abaixo a lista dos templates cadastrados no sistema."
+                new: "Utilize os campos abaixo para cadastrar um novo template."
+                show: "Verifique se as informações abaixo estão corretas."
+            types:
+                selection: "Selecione um tipo"
+                one: "Home"
+                two: "Interna"
+                three: "Conteudo"
+                four: "Ingresso"
+        ticket:
+            ticket_type_id: "Tipo de Bilhete"
+            ticket_category_id: "Categoria do Bilhete"
+            above: "Acima de"
+            discount: "Desconto adcional de"
+            ticket_date: "Data do Bilhete"
+            <<: *active_model_default
+            messages:
+                index: "Verifique abaixo a lista dos bilhetes cadastrados no sistema."       
+                new: "Utilize os campos abaixo para cadastrar um novo bilhete." 
+                show: "Verifique se as informações abaixo estão corretas." 
+
+        ticket_category:
+            order: "Ordem"
+            <<: *active_model_default 
+            messages:
+                index: "Verifique abaixo a lista das categorias de bilhetes cadastrados no sistema."       
+                new: "Utilize os campos abaixo para cadastrar uma nova categoria de bilhete." 
+                show: "Verifique se as informações abaixo estão corretas."
+        ticket_home:
+            content: "Conteúdo"
+            <<: *active_model_default 
+            messages:
+                index: "Verifique abaixo a página de abertura de bilhetes cadastrada no sistema."       
+                new: "Utilize os campos abaixo para cadastrar uma nova página de abertura de bilhete." 
+                show: "Verifique se as informações abaixo estão corretas."
+        ticket_type:
+            <<: *active_model_default
+            messages:
+                index: "Verifique abaixo a lista dos tipos de bilhetes cadastrados no sistema."       
+                new: "Utilize os campos abaixo para cadastrar um novo tipo de bilhete." 
+                show: "Verifique se as informações abaixo estão corretas."                                              
+        user:
+            password: "Senha"
+            password_confirmation: "Confirmação de Senha"
+            gender: "Sexo"
+            date_of_birth: "Data de Nascimento"
+            messages:
+                index: "Verifique abaixo a lista dos usuários cadastrados no sistema."       
+                new: "Utilize os campos abaixo para cadastrar um novo usuário." 
+                show: "Verifique se as informações abaixo estão corretas."
+        webmodule:
+            webpart_id: "WebPart"
+            position: "Posição"
+            module_key: "Chave do Módulo"
+            messages:
+                index: "Verifique abaixo a lista dos módulos cadastrados no sistema."
+                new: "Utilize os campos abaixo para cadastrar um novo módulo."
+                show: "Verifique se as informações abaixo estão corretas."
+                
+        webpart:
+            encoding: "Codificação"
+            webtype: "Tipo"
+            messages:
+                index: "Verifique abaixo a lista dos webparts cadastrados no sistema."  
+                new: "Utilize os campos abaixo para cadastrar um novo webpart." 
+                show: "Verifique se as informações abaixo estão corretas."  
+            types:
+               selection: "Selecione um tipo"
+               one: "Noticias" 
+               two: "HTML Customizado"
+               three: "Imagem"
+               four: "Newsletter"
+               five: "Galeria"
+               six: "Banners Publicos"
+               seven: "Enquete"
+               eight: "Previsão Tempo"
+               nine: "Galeria Carrossel"
+        #Fim dos campos especificos
     errors:
       template:
-        header:
-          one: "Não foi possível gravar %{model}: 1 erro"
-          other: "Não foi possível gravar %{model}: %{count} erros."
-        body: "Por favor, verifique o(s) seguinte(s) campo(s):"
+        <<: *errors_template
 
       messages:
         taken: "já está em uso"
@@ -199,25 +424,40 @@
       full_messages:
         format: "%{attribute} %{message}"
         
-        
-    authlogic:
-      error_messages:
-        login_blank: "não pode ficar em branco"
-        login_not_found: "não é válido"
-        login_invalid: "deve usar somente letras, números, espaços e .-_@ por favor."
-        consecutive_failed_logins_limit_exceeded: "Consecutivos logins que falharam limite excedido, a conta está desativada."
-        email_invalid: "deve ser semelhante a um endereço de email."
-        password_blank: "não pode ficar em branco"
-        password_invalid: "não é válido"
-        not_active: "Sua conta não está ativa"
-        not_confirmed: "Sua conta não está confirmada"
-        not_approved: "Sua conta não foi aprovada"
-        no_authentication_details: "Você não forneceu nenhum detalhe para autenticação."
-      models:
-        user_session: "SessãoUsuário"
-      attributes:
-        user_session:
-          login: "Usuário"
-          email: "Email"
-          password: "Senha"
-          remember_me: "Lembrar me"
+  authlogic:
+    error_messages:
+      login_blank: "não pode ficar em branco"
+      login_not_found: "não é válido"
+      login_invalid: "deve usar somente letras, números, espaços e .-_@ por favor."
+      consecutive_failed_logins_limit_exceeded: "Consecutivos logins que falharam limite excedido, a conta está desativada."
+      email_invalid: "deve ser semelhante a um endereço de email."
+      password_blank: "não pode ficar em branco"
+      password_invalid: "não é válido"
+      not_active: "Sua conta não está ativa"
+      not_confirmed: "Sua conta não está confirmada"
+      not_approved: "Sua conta não foi aprovada"
+      no_authentication_details: "Você não forneceu nenhum detalhe para autenticação."
+    models:
+      user_session: "SessãoUsuário"
+    attributes:
+      user_session:
+        login: "Usuário"
+        email: "Email"
+        password: "Senha"
+        remember_me: "Lembrar me"        
+
+#Mensagens do Sitema
+  system_messages:
+      notice_to_delete: "Esta operação não poderá ser desfeita, deseja continuar?"
+      edit_form: "Utilize os campos abaixo para editar as informações."
+      index_form: "Verifique abaixo a lista dos %{model} cadastrados no sistema."
+      service: "Central de Atendimento"
+      follow: "Siga-nos"
+  system_record:
+    name: "nome" 
+    email: "seu@email"
+    cpf: "000.000.000-00"
+    rg: "00.000.000-0"
+    estado: "estado"
+    cidade: "cidade"
+#Fim Mensagens do sistema
